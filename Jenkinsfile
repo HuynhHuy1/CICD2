@@ -52,7 +52,7 @@ pipeline {
                 // sh 'docker network create dev 
                 // sh 'echo y | docker container prune '
                 sh 'docker build -t huy21it490/democicd .'
-                sh 'docker container run -d --rm --name democicd -p 8081:8080 huy21it490/democicd'
+                sh 'docker container run -d --rm --name democicd -p 8081:8000 huy21it490/democicd'
             }
         }
  
