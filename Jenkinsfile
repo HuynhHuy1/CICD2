@@ -2,12 +2,12 @@ pipeline {
 
     agent any
 
-    tools { 
-        maven 'my-maven' 
-    }
-    environment {
-        MYSQL_ROOT_LOGIN = credentials('dockerhub')
-    }
+    // tools { 
+    //     maven 'my-maven' 
+    // }
+    // environment {
+    //     MYSQL_ROOT_LOGIN = credentials('dockerhub')
+    // }
     stages {
 
         stage('Build with Maven') {
