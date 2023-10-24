@@ -48,9 +48,8 @@ pipeline {
         stage('Deploy Spring Boot to DEV') {
             steps {
                 echo 'Deploying and cleaning'
-                // sh 'docker image pull huy21it490/democicd'
-                sh 'docker container stop huy21it490/democicd || echo "this network exists"'
-                // sh 'echo y | docker container prune '
+                sh 'docker container stop huy21it490/democicd || echo "No such container"'
+                sh 'docker container rm huy21it490/democicd || echo "No such container"'
                 sh 'docker build -t huy21it490/democicd .'
                 sh 'docker container run -d --rm --name democicd -p 8081:8000 huy21it490/democicd'
             }
