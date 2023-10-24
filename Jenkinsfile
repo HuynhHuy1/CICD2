@@ -21,11 +21,13 @@ pipeline {
         stage('Packaging/Pushing imagae') {
 
             steps {
-                script{
-
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/r/huy21it490/democicd') {
+                    sh 'docker build -t huy21it490/democicd .'
+                    sh 'docker push huy21it490/democicd'
                 }
             }
         }
+
 
         // stage('Deploy MySQL to DEV') {
         //     steps {
@@ -45,12 +47,10 @@ pipeline {
         stage('Deploy Spring Boot to DEV') {
             steps {
                 echo 'Deploying and cleaning'
-                sh 'docker image pull khaliddinh/springboot'
-                sh 'docker container stop khalid-springboot || echo "this container does not exist" '
+                sh 'docker image pull huy21it490/democicd'
                 sh 'docker network create dev || echo "this network exists"'
                 sh 'echo y | docker container prune '
-
-                sh 'docker container run -d --rm --name khalid-springboot -p 8081:8080 --network dev khaliddinh/springboot'
+                sh 'docker container run -d --rm --name democicd -p 8081:8080 --network dev huy21it490/democicd'
             }
         }
  
