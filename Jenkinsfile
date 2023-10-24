@@ -25,6 +25,7 @@ pipeline {
                     sh 'docker build -t huy21it490/democicd .'
                     sh 'docker push huy21it490/democicd'
                 }
+                
             }
         }
 
