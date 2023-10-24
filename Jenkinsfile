@@ -18,16 +18,16 @@ pipeline {
             }
         }
 
-        stage('Packaging/Pushing imagae') {
+        // stage('Packaging/Pushing imagae') {
 
-            steps {
-                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/r/huy21it490/democicd') {
-                    sh 'docker build -t huy21it490/democicd .'
-                    sh 'docker push huy21it490/democicd'
-                }
+        //     steps {
+        //         withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/r/huy21it490/democicd') {
+        //             sh 'docker build -t huy21it490/democicd .'
+        //             sh 'docker push huy21it490/democicd'
+        //         }
                 
-            }
-        }
+        //     }
+        // }
 
 
         // stage('Deploy MySQL to DEV') {
@@ -48,9 +48,10 @@ pipeline {
         stage('Deploy Spring Boot to DEV') {
             steps {
                 echo 'Deploying and cleaning'
-                sh 'docker image pull huy21it490/democicd'
-                sh 'docker network create dev || echo "this network exists"'
-                sh 'echo y | docker container prune '
+                // sh 'docker image pull huy21it490/democicd'
+                // sh 'docker network create dev || echo "this network exists"'
+                // sh 'echo y | docker container prune '
+                sh 'docker build -t huy21it490/democicd .'
                 sh 'docker container run -d --rm --name democicd -p 8081:8080 --network dev huy21it490/democicd'
             }
         }
