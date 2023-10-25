@@ -18,16 +18,16 @@ pipeline {
             }
         }
 
-        // stage('Packaging/Pushing imagae') {
+        stage('Packaging/Pushing imagae') {
 
-        //     steps {
-        //         withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/r/huy21it490/democicd') {
-        //             sh 'docker build -t huy21it490/democicd .'
-        //             sh 'docker push huy21it490/democicd'
-        //         }
+            steps {
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/r/huy21it490/democicd') {
+                    sh 'docker build -t huy21it490/democicd .'
+                    sh 'docker push huy21it490/democicd'
+                }
                 
-        //     }
-        // }
+            }
+        }
 
 
         // stage('Deploy MySQL to DEV') {
