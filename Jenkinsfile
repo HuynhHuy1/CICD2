@@ -21,7 +21,7 @@ pipeline {
         stage('Packaging/Pushing imagae') {
 
             steps {
-                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/huy21it490/democicd') {
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com') {
                     sh 'docker build -t huy21it490/democicd .'
                     sh 'docker push huy21it490/democicd'
                 }
